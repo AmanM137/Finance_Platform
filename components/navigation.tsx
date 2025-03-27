@@ -17,7 +17,7 @@ import {
 const routes = [
     {
         href: "/",
-        label:"overview",
+        label:"Overview",
     },
     {
         href: "/transactions",
@@ -37,12 +37,11 @@ const routes = [
     },
 ];
 
-export const Navigation = () =>{
+export const Navigation = ({ isMobile }: { isMobile: boolean }) =>{
     const [isOpen,setIsOpen] = useState(false);
 
     const pathname = usePathname();
     const router = useRouter();
-    const isMobile = useMedia("(max-width: 1024px)",false);
 
     const onClick = (href:string) =>{
         router.push(href);
