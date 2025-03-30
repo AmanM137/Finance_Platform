@@ -1,6 +1,6 @@
 # Finance_Platform
 
-## Time Stamp - 02:38:20
+## Time Stamp - 03:21:00
 
 ### To run DB Studio - ``` npm run db:studio ```
 

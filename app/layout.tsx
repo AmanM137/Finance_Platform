@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { clerkMiddleware } from "@clerk/nextjs/server";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Providers } from "@/providers/query-provider";
+import { QueryProviders } from "@/providers/query-provider";
 
 
 
@@ -33,9 +33,9 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Providers>
+          <QueryProviders>
             {children}
-          </Providers>
+          </QueryProviders>
         </body>
       </html>
     </ClerkProvider>
