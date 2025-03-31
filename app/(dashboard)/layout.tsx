@@ -1,5 +1,5 @@
 import {Header} from "@/components/header";
-import { QueryProviders } from "@/providers/query-provider";
+import { QueryProvider } from "@/providers/query-provider";
 import { SheetProvider } from "@/providers/sheet-provider";
 
 type props ={
@@ -11,10 +11,10 @@ const DashboardLayout =({children}:props) =>{
         <>
             <Header />
             <div className="px-3 lg:px-14">
-                <QueryProviders>
+                <QueryProvider>
                     <SheetProvider />
                     {children}
-                </QueryProviders>
+                </QueryProvider>
             </div>
         </>
     );

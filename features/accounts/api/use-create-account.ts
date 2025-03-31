@@ -16,7 +16,7 @@ export const useCreateAccount = () =>{
     RequestType 
     >({
         mutationFn: async(json) =>{
-            const response = await client.api.accounts.$post({json});
+            const response = await client.api.accounts.$post({json});            
             return await response.json();
         },
         onSuccess: () =>{
@@ -27,5 +27,6 @@ export const useCreateAccount = () =>{
             toast.error("Failed to create account");
         },
     });
+
     return mutation;
 };
