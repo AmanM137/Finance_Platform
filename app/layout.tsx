@@ -4,6 +4,8 @@ import "./globals.css";
 import { clerkMiddleware } from "@clerk/nextjs/server";
 import { ClerkProvider } from "@clerk/nextjs";
 import { QueryProviders } from "@/providers/query-provider";
+import { Toaster } from "sonner";
+import { SheetProvider } from "@/providers/sheet-provider";
 
 
 
@@ -34,6 +36,8 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <QueryProviders>
+            <SheetProvider />
+            <Toaster />
             {children}
           </QueryProviders>
         </body>
