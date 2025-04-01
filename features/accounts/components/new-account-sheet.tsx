@@ -32,8 +32,8 @@ export const NewAccountSheet = ()=>{
     }
     return(
         <Sheet open = {isOpen} onOpenChange={onClose}>
-            <SheetContent className="space-y-4">
-                <SheetHeader>
+            <SheetContent className="py-4 px-6 max-w-md mx-auto">
+                <SheetHeader className="px-1">
                     <SheetTitle>
                         New Account
                     </SheetTitle>

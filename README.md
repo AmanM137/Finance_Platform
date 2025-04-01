@@ -1,9 +1,8 @@
 # Finance_Platform
 
-## Time Stamp - 04:24:40
+## Time Stamp - 04:46:00
 
 ### To run DB Studio - ``` npm run db:studio ```
 
 ## Errors
-## Time Stamp - 04:24:40
--Cannot find namespace 'JSX'
+(No errors)

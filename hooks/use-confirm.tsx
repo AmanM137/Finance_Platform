@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Button} from "@/components/ui/button";
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogTitle,
@@ -13,37 +13,39 @@ import {
 export const useConfirm = (
     title: string,
     message: string,
-):[()=> JSX.Element , ()=>Promise<unknown>]=>{
-    const [promise , setPromise] = useState<{resolve:(value:boolean)=>
-        void }| null>(null);
+): [() => React.ReactElement, () => Promise<unknown>] => {
+    const [promise, setPromise] = useState<{
+        resolve: (value: boolean) =>
+            void
+    } | null>(null);
 
-    const confirm = () => new Promise((resolve,reject)=>{
-        setPromise({resolve});
+    const confirm = () => new Promise((resolve, reject) => {
+        setPromise({ resolve });
     });
-    
-    const handleClose = ()=>{
+
+    const handleClose = () => {
         setPromise(null);
     };
 
-    const handleConfirm = ()=>{
+    const handleConfirm = () => {
         promise?.resolve(true);
         handleClose();
     };
 
-    const handleCancel = ()=>{
+    const handleCancel = () => {
         promise?.resolve(false);
         handleClose();
     };
 
-    const ConfirmationDialog = ()=>(
+    const ConfirmationDialog = () => (
         <Dialog open={promise != null}>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{title}</DialogTitle>
-                    <DialogContent>{message}</DialogContent>
+                    <DialogDescription>{message}</DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="pt-2">
-                    <Button onClick={handleCancel} variant ="outline">
+                    <Button onClick={handleCancel} variant="outline">
                         Cancel
                     </Button>
                     <Button onClick={handleConfirm}>
@@ -53,6 +55,7 @@ export const useConfirm = (
             </DialogContent>
         </Dialog>
     );
+
     return [ConfirmationDialog, confirm];
 };
 
