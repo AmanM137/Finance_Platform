@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { z } from "zod";
 import { db } from "@/db/drizzle";
-import { accounts, insertAccountSchema } from "@/db/schema";
+import { categories, insertCategoriesSchema } from "@/db/schema";
 import { and, eq, inArray } from "drizzle-orm";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { zValidator } from "@hono/zod-validator";
@@ -20,11 +20,11 @@ const app = new Hono()
 
             try {
                 const data = await db.select({
-                    id: accounts.id,
-                    name: accounts.name,
+                    id:categories.id,
+                    name: categories.name,
                 })
-                    .from(accounts)
-                    .where(eq(accounts.userId, auth.userId));
+                    .from(categories)
+                    .where(eq(categories.userId, auth.userId));
 
                 return c.json({ data });
             } catch (error) {
@@ -52,14 +52,14 @@ const app = new Hono()
 
             const [data]=await db
             .select({
-                id:accounts.id,
-                name:accounts.name,
+                id:categories.id,
+                name:categories.name,
             })
-            .from(accounts)
+            .from(categories)
             .where(
                 and(
-                    eq(accounts.userId,auth.userId),
-                    eq(accounts.id,id)
+                    eq(categories.userId,auth.userId),
+                    eq(categories.id,id)
                 ),
             );
 
@@ -72,7 +72,7 @@ const app = new Hono()
     )
     .post("/",
         clerkMiddleware(),
-        zValidator("json", insertAccountSchema.pick({
+        zValidator("json", insertCategoriesSchema.pick({
             name: true,
         })),
         async (c) => {
@@ -85,7 +85,7 @@ const app = new Hono()
             }
 
             try {
-                const [data] = await db.insert(accounts).values({
+                const [data] = await db.insert(categories).values({
                     id: createId(),
                     userId: auth.userId,
                     ...values,
@@ -115,15 +115,15 @@ const app = new Hono()
             }
 
             const data = await db
-                .delete(accounts)
+                .delete(categories)
                 .where(
                     and(
-                        eq(accounts.userId, auth.userId),
-                        inArray(accounts.id, values.ids)
+                        eq(categories.userId, auth.userId),
+                        inArray(categories.id, values.ids)
                     )
                 )
                 .returning({
-                    id: accounts.id,
+                    id: categories.id,
                 });
 
             return c.json({ data });
@@ -140,7 +140,7 @@ const app = new Hono()
         ),
         zValidator(
             "json",
-            insertAccountSchema.pick({
+            insertCategoriesSchema.pick({
                 name: true,
             })
         ),
@@ -159,12 +159,12 @@ const app = new Hono()
             }
 
             const [data] = await db
-            .update(accounts)
+            .update(categories)
             .set(values)
             .where(
                 and(
-                    eq(accounts.userId, auth.userId),
-                    eq(accounts.id, id)
+                    eq(categories.userId, auth.userId),
+                    eq(categories.id, id)
                 ),
             ).returning();
 
@@ -198,14 +198,14 @@ const app = new Hono()
             }
 
             const [data] = await db
-            .delete(accounts)
+            .delete(categories)
             .where(
                 and(
-                    eq(accounts.userId, auth.userId),
-                    eq(accounts.id, id)
+                    eq(categories.userId, auth.userId),
+                    eq(categories.id, id)
                 ),
             ).returning({
-                id: accounts.id,
+                id: categories.id,
             });
 
             if(!data){

@@ -1,8 +1,9 @@
 # Finance_Platform
 
-## Time Stamp - 04:46:00
+## Time Stamp - 05:10:00
 
 ### To run DB Studio - ``` npm run db:studio ```
 
 ## Errors
-(No errors)
+## Time Stamp - 05:10:00
+- Unhandled Runtime Error

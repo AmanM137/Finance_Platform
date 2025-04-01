@@ -15,6 +15,13 @@
       "when": 1743099513812,
       "tag": "0001_amazing_cerise",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1743518046010,
+      "tag": "0002_cold_hex",
+      "breakpoints": true
     }
   ]
 }
