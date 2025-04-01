@@ -94,7 +94,7 @@ const app = new Hono()
                 return c.json({ data });
             } catch (error) {
                 console.error("Database Insert Error:", error);
-                return c.json({ error: "Failed to create account" }, 500);
+                return c.json({ error: "Failed to create category" }, 500);
             }
         })
     .post(
