@@ -35,6 +35,9 @@ const TransactionPage = () =>{
     const newTransaction = useNewTransaction();
     const transactionQuery = useGetTransactions();
     const transactions = transactionQuery.data || [];
+    console.log("transaction query"+transactionQuery);
+    console.log("transaction"+transactions);
+    
     const deleteTransactions = useBulkDeleteTransactions();
     const isDisabled = transactionQuery.isLoading || deleteTransactions.isPending;
 
@@ -82,9 +85,9 @@ const TransactionPage = () =>{
                    <DataTable 
                      filterKey="payee" 
                      columns={columns} 
-                     data={transactions} 
-                     onDelete={(rows) => {
-                        const ids = rows.map((r) => r.original.id); 
+                     data={transactions}
+                     onDelete={(row) => {
+                     const ids = row.map((r) => r.original.id); 
                         deleteTransactions.mutate({ids});
                     }}
                      disabled = {isDisabled}

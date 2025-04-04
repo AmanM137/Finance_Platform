@@ -61,14 +61,7 @@ export const TransactionForm = ({
 }: props) => {
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
-        defaultValues: defaultValues ?? {
-            date: undefined, 
-            accountId: "",
-            categoryId: null,
-            payee: "",
-            amount: "",
-            notes: "",
-        },
+        defaultValues: defaultValues,
     });
 
     const handleSubmit = (values: FormValues) => {
@@ -96,7 +89,7 @@ export const TransactionForm = ({
                         <FormItem>
                             <FormControl>
                                 <DatePicker
-                                    value={field.value ? new Date(field.value) : undefined}
+                                    value={field.value}
                                     onChange={field.onChange}
                                     disabled={disabled}
                                 />
