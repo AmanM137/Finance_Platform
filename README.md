@@ -1,9 +1,11 @@
 # Finance_Platform
 
-## Time Stamp - 06:54:15
+## Time Stamp - 08:00:00
 
 ### To run DB Studio - ``` npm run db:studio ```
 
 ## Errors
-## Time Stamp - 07:14:42
--transaction-form.tsx 
+###TIME Stamp - 07:25:12
+-components/ui/badge.tsx  - check destructive css
+
+-dashboard/transactions/page.tsx 

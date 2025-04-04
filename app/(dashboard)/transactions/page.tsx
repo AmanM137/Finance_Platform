@@ -11,18 +11,34 @@ import { Button } from "@/components/ui/button";
 import { Loader2, Plus } from "lucide-react";
 import { columns } from "./columns";
 import { DataTable } from "@/components/data-table";
-import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
+import { useGetTransactions } from "@/features/transactions/api/use-get-transactions";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useBulkDeleteAccounts } from "@/features/accounts/api/use-bulk-delete-accounts";
+import { UploadButton } from "./upload-button";
+import { useState } from "react";
+import { useBulkDeleteTransactions } from "@/features/transactions/api/use-bulk-delete-transactions";
+
+enum VARIANTS {
+    LIST ="LIST",
+    IMPORT = "IMPORT",
+};
+
+const INITIAL_IMPORT_RESULTS = {
+    data: [],
+    errors:[],
+    meta:{},
+};
 
 const TransactionPage = () =>{
-    const newTransaction = useNewTransaction();
-    const accountQuery = useGetAccounts();
-    const accounts = accountQuery.data || [];
-    const deleteAccounts = useBulkDeleteAccounts();
-    const isDisabled = accountQuery.isLoading || deleteAccounts.isPending;
+    const [variant , setVariant] = useState<VARIANTS>(VARIANTS.LIST);
 
-    if(accountQuery.isLoading){
+
+    const newTransaction = useNewTransaction();
+    const transactionQuery = useGetTransactions();
+    const transactions = transactionQuery.data || [];
+    const deleteTransactions = useBulkDeleteTransactions();
+    const isDisabled = transactionQuery.isLoading || deleteTransactions.isPending;
+
+    if(transactionQuery.isLoading){
         return(
             <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
                 <Card className="border-none drop-shadow-sm">
@@ -38,6 +54,17 @@ const TransactionPage = () =>{
             </div>
         )
     }
+
+    if(variant === VARIANTS.IMPORT){
+        return(
+            <>
+            <div>
+                This is a import screen
+            </div>
+            </>
+        );
+    }
+
     return(
         <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
             <Card className="border-none drop-shadow-sm">
@@ -49,15 +76,16 @@ const TransactionPage = () =>{
                         <Plus className="size-4 mr-2" />
                         Add new
                     </Button>
+                    <UploadButton onUpload ={()=>{}} />
                 </CardHeader>
                 <CardContent>
                    <DataTable 
-                     filterKey="name" 
+                     filterKey="payee" 
                      columns={columns} 
-                     data={accounts} 
+                     data={transactions} 
                      onDelete={(rows) => {
                         const ids = rows.map((r) => r.original.id); 
-                        deleteAccounts.mutate({ids});
+                        deleteTransactions.mutate({ids});
                     }}
                      disabled = {isDisabled}
                     />
