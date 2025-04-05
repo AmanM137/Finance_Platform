@@ -1,8 +1,8 @@
 # Finance_Platform
 
-## Time Stamp - 08:54:00
+## Time Stamp - 09:29:55
 
 ### To run DB Studio - ``` npm run db:studio ```
 
 ## Errors
--Time Stamp - 08:32:00 (check css of button)
+(No error)

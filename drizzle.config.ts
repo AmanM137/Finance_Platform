@@ -9,6 +9,6 @@ export default defineConfig({
     dbCredentials: {
         url: process.env.DATABASE_URL!,
     },
-    verbose: true, // Fixed typo
+    verbose: true,
     strict: true,
 });

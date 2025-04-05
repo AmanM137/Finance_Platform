@@ -141,7 +141,7 @@ const app = new Hono()
         "/bulk-create",
         clerkMiddleware(),
         zValidator(
-            "json", 
+            "json",
             z.array(
                 insertTransactionSchema.omit({
                     id: true,
@@ -152,21 +152,23 @@ const app = new Hono()
             const auth = getAuth(c);
             const values = c.req.valid("json");
 
-            if(!auth?.userId){
-                return c.json({error:"Unauthorized"},401);
+            if (!auth?.userId) {
+                return c.json({ error: "Unauthorized" }, 401);
             }
+            console.log("check point 1");
 
             const data = await db
-            .insert(transactions)
-            .values(
-                values.map((value)=>({
-                    id: createId(),
-                    ...value,
-                }))
-            )
-            .returning();
+                .insert(transactions)
+                .values(
+                    values.map((value) => ({
+                        id: createId(),
+                        ...value,
+                    }))
+                )
+                .returning();
+            console.log(c.json({ data }));
 
-            return c.json({data});
+            return c.json({ data });
         },
 
     )
@@ -263,7 +265,6 @@ const app = new Hono()
             }
             return c.json({ data });
         },
-
     )
     .delete(
         "/:id",
