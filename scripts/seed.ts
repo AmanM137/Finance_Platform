@@ -10,7 +10,7 @@ config({ path: ".env.local" });
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql);
 
-const SEED_USER_ID = "user_2ulWNaRzPQUReoE7z2blDZubmjf";
+const SEED_USER_ID = process.env.SEED_USER_ID!;
 
 const SEED_CATEGORIES = [
     { id: "category_1", name: "Food", userId: SEED_USER_ID, plaidId: null },
@@ -25,7 +25,7 @@ const SEED_ACCOUNTS = [
 ];
 
 const defaultTo = new Date();
-const defaultFrom = subDays(defaultTo, 30);
+const defaultFrom = subDays(defaultTo, 50);
 
 const SEED_TRANSACTIONS: typeof transactions.$inferSelect[] = [];
 
