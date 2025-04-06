@@ -91,6 +91,7 @@ const app = new Hono()
             const expensesChange = calculatePercentageChange(
                 currentPeriod.expenses,
                 lastPeriod.expenses,
+                { reverse: true },
             );
 
             const remainingChange = calculatePercentageChange(
