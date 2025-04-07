@@ -1,6 +1,8 @@
 "use client"
 
 import { useUser } from "@clerk/nextjs";
+import { AccountFilter } from "./account-filter";
+import { DateFilter } from "./date-filter";
 
 export const WelcomeMsg = () =>{
     const {user , isLoaded} = useUser();
@@ -12,6 +14,8 @@ export const WelcomeMsg = () =>{
             <p className="text-sm lg:text-base text-[#89b6fd]">
                 This is your Financial Overview Report
             </p>
+            <AccountFilter />
+            <DateFilter />
         </div>
     )
 }
