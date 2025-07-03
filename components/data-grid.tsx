@@ -27,31 +27,31 @@ export const DataGrid = () => {
     }
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-2 mb-8">
-            <DataCard
-                title="Remaining"
-                value={data?.remainingAmount}
-                percentageChange={data?.remainingChange}
-                icon={FaPiggyBank}
-                variant="default"
-                dateRange={dateRangeLabel}
-            />
-            <DataCard
-                title="Income"
-                value={data?.incomeAmount}
-                percentageChange={data?.incomeChange}
-                icon={FaArrowTrendUp}
-                variant="default"
-                dateRange={dateRangeLabel}
-            />
-            <DataCard
-                title="Expenses"
-                value={data?.expensesAmount}
-                percentageChange={data?.expensesChange}
-                icon={FaArrowTrendDown}
-                variant="default"
-                dateRange={dateRangeLabel}
-            />
-        </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-2 mb-8">
+                <DataCard
+                    title="Remaining"
+                    value={data?.remainingAmount}
+                    percentageChange={data?.remainingChange}
+                    icon={FaPiggyBank}
+                    variant="default"
+                    dateRange={dateRangeLabel}
+                />
+                <DataCard
+                    title="Income"
+                    value={data?.incomeAmount}
+                    percentageChange={data?.incomeChange}
+                    icon={FaArrowTrendUp}
+                    variant="default"
+                    dateRange={dateRangeLabel}
+                />
+                <DataCard
+                    title="Expenses"
+                    value={data?.expensesAmount}
+                    percentageChange={data?.expensesChange}
+                    icon={FaArrowTrendDown}
+                    variant="default"
+                    dateRange={dateRangeLabel}
+                />
+            </div>
     )
 }
