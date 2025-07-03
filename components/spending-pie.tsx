@@ -30,7 +30,6 @@ type Props = {
 export const SpendingPie = ({ data = [] }: Props) => {
     const [chartType, setChartType] = useState("pie");
     const onTypeChange = (type:string)=>{
-        //TODO: Add paywall
         setChartType(type);
     };
     return (
