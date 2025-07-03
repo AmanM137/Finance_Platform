@@ -82,18 +82,18 @@ const TransactionPage = () => {
 
     if (transactionQuery.isLoading) {
         return (
-            <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
-                <Card className="border-none drop-shadow-sm">
-                    <CardHeader>
-                        <Skeleton className="h-8 w-48" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="h-[500px] w-full flex items-center justify-center">
-                            <Loader2 className="size-6 text-slate-300 animate-spin" />
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
+                <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
+                    <Card className="border-none drop-shadow-sm">
+                        <CardHeader>
+                            <Skeleton className="h-8 w-48" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="h-[500px] w-full flex items-center justify-center">
+                                <Loader2 className="size-6 text-slate-300 animate-spin" />
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
         )
     }
 
@@ -111,38 +111,38 @@ const TransactionPage = () => {
     }
 
     return (
-        <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
-            <Card className="border-none drop-shadow-sm">
-                <CardHeader className="flex flex-col gap-y-2 lg:flex-row lg:items-center lg:justify-between w-full">
-                    <CardTitle className="text-xl line-clamp-1">
-                        Transaction History
-                    </CardTitle>
-                    <div className="flex flex-col lg:flex-row gap-y-2 items-center gap-x-2">
-                        <Button
-                            onClick={newTransaction.onOpen}
-                            size="sm"
-                            className="w-full lg:w-auto"
-                        >
-                            <Plus className="size-4 mr-2" />
-                            Add new
-                        </Button>
-                        <UploadButton onUpload={onUpload} />
-                    </div>
-                </CardHeader>
-                <CardContent>
-                    <DataTable
-                        filterKey="payee"
-                        columns={columns}
-                        data={transactions}
-                        onDelete={(row) => {
-                            const ids = row.map((r) => r.original.id);
-                            deleteTransactions.mutate({ ids });
-                        }}
-                        disabled={isDisabled}
-                    />
-                </CardContent>
-            </Card>
-        </div>
+            <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
+                <Card className="border-none drop-shadow-sm">
+                    <CardHeader className="flex flex-col gap-y-2 lg:flex-row lg:items-center lg:justify-between w-full">
+                        <CardTitle className="text-xl line-clamp-1">
+                            Transaction History
+                        </CardTitle>
+                        <div className="flex flex-col lg:flex-row gap-y-2 items-center gap-x-2">
+                            <Button
+                                onClick={newTransaction.onOpen}
+                                size="sm"
+                                className="w-full lg:w-auto"
+                            >
+                                <Plus className="size-4 mr-2" />
+                                Add new
+                            </Button>
+                            <UploadButton onUpload={onUpload} />
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        <DataTable
+                            filterKey="payee"
+                            columns={columns}
+                            data={transactions}
+                            onDelete={(row) => {
+                                const ids = row.map((r) => r.original.id);
+                                deleteTransactions.mutate({ ids });
+                            }}
+                            disabled={isDisabled}
+                        />
+                    </CardContent>
+                </Card>
+            </div>
     );
 };
 

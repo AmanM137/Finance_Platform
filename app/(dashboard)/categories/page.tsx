@@ -1,6 +1,5 @@
 "use client"
 
-
 import {
     Card,
     CardHeader,
@@ -15,36 +14,37 @@ import { useGetCategories } from "@/features/categories/api/use-get-categories";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useBulkDeleteCategories } from "@/features/categories/api/use-bulk-delete-categories";
 import { useNewCategory } from "@/features/categories/hooks/use-new-category";
+import { Suspense } from "react";
 
-const CategoriesPage = () =>{
+const CategoriesPage = () => {
     const newCategory = useNewCategory();
-    const categoryQuery = useGetCategories ();
+    const categoryQuery = useGetCategories();
     const categories = categoryQuery.data || [];
     const deleteCategories = useBulkDeleteCategories();
     const isDisabled = categoryQuery.isLoading || deleteCategories.isPending;
 
-    if(categoryQuery.isLoading){
-        return(
-            <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
-                <Card className="border-none drop-shadow-sm">
-                <CardHeader>
-                    <Skeleton className="h-8 w-48"/>
-                </CardHeader>
-                <CardContent>
-                    <div className="h-[500px] w-full flex items-center justify-center">
-                        <Loader2 className="size-6 text-slate-300 animate-spin"/>
-                    </div>
-                </CardContent>
-                </Card>
-            </div>
+    if (categoryQuery.isLoading) {
+        return (
+                <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
+                    <Card className="border-none drop-shadow-sm">
+                        <CardHeader>
+                            <Skeleton className="h-8 w-48" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="h-[500px] w-full flex items-center justify-center">
+                                <Loader2 className="size-6 text-slate-300 animate-spin" />
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
         )
     }
-    return(
+    return (
         <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
             <Card className="border-none drop-shadow-sm">
                 <CardHeader className="flex flex-col gap-y-2 lg:flex-row lg:items-center lg:justify-between w-full">
                     <CardTitle className="text-xl line-clamp-1">
-                       Categories Page
+                        Categories Page
                     </CardTitle>
                     <Button onClick={newCategory.onOpen} size="sm">
                         <Plus className="size-4 mr-2" />
@@ -52,15 +52,15 @@ const CategoriesPage = () =>{
                     </Button>
                 </CardHeader>
                 <CardContent>
-                   <DataTable 
-                     filterKey="name" 
-                     columns={columns} 
-                     data={categories} 
-                     onDelete={(rows) => {
-                        const ids = rows.map((r) => r.original.id); 
-                        deleteCategories.mutate({ids});
-                    }}
-                     disabled = {isDisabled}
+                    <DataTable
+                        filterKey="name"
+                        columns={columns}
+                        data={categories}
+                        onDelete={(rows) => {
+                            const ids = rows.map((r) => r.original.id);
+                            deleteCategories.mutate({ ids });
+                        }}
+                        disabled={isDisabled}
                     />
                 </CardContent>
             </Card>
