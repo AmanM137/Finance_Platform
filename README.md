@@ -4,9 +4,7 @@ Finance Platform is a robust and modern SaaS application for tracking income, ex
 
 ---
 
-## 🌐 App Link
-
-[Live Demo](https://finance-platform-eyl2.vercel.app/)
+## 🌐 App Link :- [Finance Manager](https://finance-platform-eyl2.vercel.app/)
 
 ---
 
